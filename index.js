@@ -5,11 +5,10 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // in case Framer posts form-encoded
 
-const LOOPS_API_KEY = "ccf80b4faf6e4ff17825ba70d5683fbe";
-const TRANSACTIONAL_ID = "cmfm2f5y612y6w50iy2x04u8m";
-const THANK_YOU_URL = "https://www.theinstantleader.com/thank-you";  // <-- change this
-const DOWNLOAD_LINK = "https://drive.google.com/file/d/1a9biuJAVA7jyxrkviS5jJgmr1IFw6znD/view"; // <-- change this
-
+const LOOPS_API_KEY = process.env.LOOPS_API_KEY;
+const TRANSACTIONAL_ID = process.env.TRANSACTIONAL_ID;
+const THANK_YOU_URL = process.env.THANK_YOU_URL;
+const DOWNLOAD_LINK = process.env.DOWNLOAD_LINK;
 
 app.get("/", (_, res) => res.send("✅ Server OK. Use POST /send-email."));
 
