@@ -20,6 +20,18 @@ app.post("/send-email", async (req, res) => {
 
     if (!email) return res.status(400).send("Missing email");
 
+     // 1️⃣ Add contact to Loops Audience
+    await axios.post(
+      "https://app.loops.so/api/v1/contacts/create",
+      { email },
+      {
+        headers: {
+          Authorization: `Bearer ${LOOPS_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
     await axios.post(
       "https://app.loops.so/api/v1/transactional",
       {
